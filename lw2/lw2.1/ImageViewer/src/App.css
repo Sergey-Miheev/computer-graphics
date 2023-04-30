@@ -1,0 +1,85 @@
+.menu-container {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.menu-trigger {
+    background: #ffffff;
+    cursor: pointer;
+    margin: 10px;
+    padding: 4px 60px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    align-self: flex-start;
+}
+
+.menu-trigger:hover {
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.menu {
+    margin: 0 0 10px 10px;
+    background: #ffffff;
+    align-self: flex-start;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.menu.active {
+    padding: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul:hover {
+    box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+}
+
+.menu_open {
+    align-self: flex-start;
+    text-decoration: none;
+    color: #333333;
+    padding: 3px 0px;
+}
+
+.open_button_hidden {
+    display: none;
+}
+
+label[for="files"] {
+    padding: 6px 54px;
+    cursor: pointer;
+}
+
+.image-container {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 1499.2px;
+    height: 640px;
+    border: 3px solid green;
+    overflow: hidden;
+}
+/*Через пробел после значения цвета задаёт начальную и конечную точки цвета. 
+    В 25 процентах высоты от верха должен начаться плавный переход от цвета
+
+*/
+.image {
+    background-image: linear-gradient( 45deg, #e8e8e8 25%, transparent 25%, transparent 75%, #e8e8e8 75%, #e8e8e8), 
+        linear-gradient( 45deg,#e8e8e8 25%, transparent 25%, transparent 75%, #e8e8e8 75%, #e8e8e8);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    cursor: pointer;
+    position: relative;
+    margin: 1px 1px;
+    max-width: 1499.2px;
+    max-height: 640px;
+}
