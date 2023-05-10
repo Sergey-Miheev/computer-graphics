@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{53478b73-fde4-496e-b1ef-a7225e237b6b}</ProjectGuid>
-    <RootNamespace>Maze</RootNamespace>
+    <ProjectGuid>{330031dc-9e00-42db-9d28-4597df2fb556}</ProjectGuid>
+    <RootNamespace>textureMaze</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,15 +76,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\education\Graphics\libs\glm;D:\education\Graphics\libs\glut</AdditionalIncludeDirectories>
-      <MinimalRebuild>false</MinimalRebuild>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>D:\education\Graphics\libs\glew-1.5.6\include\GL;D:\education\Graphics\libs\glm;D:\education\Graphics\libs\glut</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\education\Graphics\libs\glut</AdditionalLibraryDirectories>
-      <AdditionalDependencies>audiere.lib;glut32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\education\Graphics\libs\glew-1.5.6\lib;D:\education\Graphics\libs\glut</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);audiere.lib;glut32.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>libc.lib;libcmt.lib</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,23 +132,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CCube.cpp" />
-    <ClCompile Include="CMazeApplication.cpp" />
-    <ClCompile Include="CMaze.cpp" />
     <ClCompile Include="CGLApplication.cpp" />
+    <ClCompile Include="CMaze.cpp" />
+    <ClCompile Include="CMazeApplication.cpp" />
     <ClCompile Include="CObserver.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="LoadTexture.cpp" />
+    <ClCompile Include="textureMaze.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCube.h" />
-    <ClInclude Include="CMazeApplication.h" />
-    <ClInclude Include="CMaze.h" />
     <ClInclude Include="CGLApplication.h" />
+    <ClInclude Include="CMaze.h" />
+    <ClInclude Include="CMazeApplication.h" />
     <ClInclude Include="CObserver.h" />
-    <ClInclude Include="Maze.h" />
+    <ClInclude Include="CVector3.h" />
+    <ClInclude Include="LoadTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="maze.txt" />
-    <Text Include="z.txt" />
+    <Text Include="zam.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
