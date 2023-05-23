@@ -1,5 +1,5 @@
 #include "LoadTexture.h"
-
+// единый стиль именования переменных
 const bool LoadTexture(LPCWSTR filename, unsigned int num_tex)
 //filename - имя файла, num_tex - номер текстуры
 {
@@ -31,10 +31,11 @@ const bool LoadTexture(LPCWSTR filename, unsigned int num_tex)
 	height = bih.biHeight;
 
 	int size = width * height * 3;//
+	// использовать вектор вместо new 
 	buf = new unsigned char[size];      // выделяем память для исходного рисунка
 	TxBits = new unsigned char[size];   // выделяем память для получаемого рисунка
 	musor = ReadFile(FileHandle, buf, (size), &nBytesRead, NULL); //считываем данные о цветах пикселей
-
+	// использовать первый буфер
 	// в этом цикле  меняем структуру цвета, т.к. BMP файл имеет структуру BGR, а нам нужен RGB
 	for (int i = 0; i < (size); i += 3)
 	{
@@ -43,19 +44,23 @@ const bool LoadTexture(LPCWSTR filename, unsigned int num_tex)
 		TxBits[i + 1] = buf[i + 1];
 		TxBits[i + 2] = buf[i];
 	}
+	// перенести в onInit
+	glewInit();
 
 	// тут инициализируется текстура
 	glBindTexture(GL_TEXTURE_2D, num_tex);
-	// Когда изображение увеличивается, то мы используем обычную линейную фильтрацию
+
+	// когда картинка будет увеличиваться(нет большей Мипмапы), используем LINEAR фильтрацию
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	// Когда изображение уменьшается, то мы используем линейной смешивание 2х мипмапов, к которым также применяется линейная фильтрация
+	// когда уменьшается — берем две ближних мипмапы и лиейно смешиваем цвета
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	// И генерируем мипмап
-	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
 		width, height,     // размер текстуры
 		0, GL_RGB, GL_UNSIGNED_BYTE, TxBits);
+
+	glGenerateMipmap(GL_TEXTURE_2D);
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
 	CloseHandle(FileHandle); // закрываем файл

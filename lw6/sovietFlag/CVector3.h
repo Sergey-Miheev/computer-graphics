@@ -1,4 +1,5 @@
-#pragma once
+#include <math.h>
+
 template <class T>
 class CVector3
 {
@@ -51,7 +52,6 @@ public:
 		y *= invLength;
 		z *= invLength;
 	}
-
 };
 
 // Вычисляем векторное произведение a и b

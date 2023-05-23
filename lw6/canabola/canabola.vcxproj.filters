@@ -15,50 +15,52 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="textureMaze.cpp">
+    <ClCompile Include="canabola.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CCube.cpp">
+    <ClCompile Include="CCanabolaApplication.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="CGLApplication.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CMaze.cpp">
+    <ClCompile Include="CProgram.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CMazeApplication.cpp">
+    <ClCompile Include="CProgramLinker.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CObserver.cpp">
+    <ClCompile Include="CShader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="LoadTexture.cpp">
+    <ClCompile Include="CShaderCompiler.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CShaderLoader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CCube.h">
+    <ClInclude Include="CCanabolaApplication.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="CGLApplication.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CMaze.h">
+    <ClInclude Include="CProgramLinker.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CMazeApplication.h">
+    <ClInclude Include="CShaderCompiler.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CObserver.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadTexture.h">
+    <ClInclude Include="CShaderLoader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="maze.txt" />
-    <Text Include="zam.txt" />
+    <None Include="checker.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="checker.vsh" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,3 @@
-#include "GL/glut.h"
 #pragma once
 
 // класс наблюдателя(камеры), который будет "перемещаться"
@@ -58,6 +57,6 @@ private:
 	double m_angleChangingSpeed;
 
 	// скорость движения наблюдателя
-	float m_Speed;
+	double m_Speed;
 };
 

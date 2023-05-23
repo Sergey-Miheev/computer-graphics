@@ -1,11 +1,14 @@
 #include <iostream>
+#define GLEW_STATIC
+#include <glew.h>
+#pragma once
 #include "GL/glut.h"
 
-#pragma once
+// ןנאדלא גםאקאכאו פאיכא 
 class CCube
 {
 public:
-	enum CubeSide
+	const enum CubeSide
 	{
 		CS_NEGATIVE_X,
 		CS_POSITIVE_X,

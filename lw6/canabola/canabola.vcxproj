@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{26ebfcbc-7e8f-4715-8212-9fb972a3207a}</ProjectGuid>
-    <RootNamespace>exmplTexture</RootNamespace>
+    <ProjectGuid>{dfdc0dab-7794-4f10-93c1-63c31a13894a}</ProjectGuid>
+    <RootNamespace>canabola</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,13 +76,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\education\Graphics\libs\glut</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\education\Graphics\libs\glut;D:\education\Graphics\libs\glew-2.1.0\include\GL</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\education\Graphics\libs\glut</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);glut32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\education\Graphics\libs\glut;D:\education\Graphics\libs\glew-2.1.0\lib\Release\Win32</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);glew32s.lib;glut32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,7 +130,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="exmplTexture.cpp" />
+    <ClCompile Include="canabola.cpp" />
+    <ClCompile Include="CCanabolaApplication.cpp" />
+    <ClCompile Include="CGLApplication.cpp" />
+    <ClCompile Include="CProgram.cpp" />
+    <ClCompile Include="CProgramLinker.cpp" />
+    <ClCompile Include="CShader.cpp" />
+    <ClCompile Include="CShaderCompiler.cpp" />
+    <ClCompile Include="CShaderLoader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CCanabolaApplication.h" />
+    <ClInclude Include="CGLApplication.h" />
+    <ClInclude Include="CProgramLinker.h" />
+    <ClInclude Include="CShaderCompiler.h" />
+    <ClInclude Include="CShaderLoader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="checker.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="checker.vsh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

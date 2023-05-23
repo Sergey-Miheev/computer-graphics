@@ -1,12 +1,10 @@
-#include "CCube.h"
+#pragma once
 #include <vector>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include "LoadTexture.h"
-#include "GL/glut.h"
 
-#pragma once
 // класс лабиринта, содержащий методы для его рисования и считывания
 class CMaze
 {

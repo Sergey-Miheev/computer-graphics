@@ -15,50 +15,46 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="textureMaze.cpp">
+    <ClCompile Include="sovietFlag.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CCube.cpp">
+    <ClCompile Include="CFlagApplication.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="CGLApplication.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CMaze.cpp">
+    <ClCompile Include="CProgram.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CMazeApplication.cpp">
+    <ClCompile Include="CShaderLoader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CObserver.cpp">
+    <ClCompile Include="CShaderCompiler.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="LoadTexture.cpp">
+    <ClCompile Include="CProgramLinker.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CCube.h">
+    <ClInclude Include="CFlagApplication.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="CGLApplication.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CMaze.h">
+    <ClInclude Include="CShaderLoader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CMazeApplication.h">
+    <ClInclude Include="CShader.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="CShaderCompiler.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CObserver.h">
+    <ClInclude Include="CProgramLinker.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="LoadTexture.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="maze.txt" />
-    <Text Include="zam.txt" />
   </ItemGroup>
 </Project>

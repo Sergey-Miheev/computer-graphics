@@ -1,13 +1,11 @@
 #include "conio.h"
 #include "Windows.h" 
 #include "audiere.h"
-#include "CGLApplication.h"
 #include "CMaze.h"
 #include "CObserver.h"
+#include "CGLApplication.h"
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/ext/matrix_transform.hpp>
-#include <iostream>
-#include <math.h>
 
 #pragma once
 class CMazeApplication : public CGLApplication
