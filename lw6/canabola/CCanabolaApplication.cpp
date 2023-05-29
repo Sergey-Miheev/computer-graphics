@@ -6,6 +6,15 @@
 #include "CShader.cpp"
 #include "CProgramLinker.h"
 
+// Угол обзора по вертикали
+const double CCanabolaApplication::FIELD_OF_VIEW = 80;
+
+// Расстояине до ближней плоскости отсчечения камеры
+const double CCanabolaApplication::ZNEAR = 1;
+
+// Расстояине до дальней плоскости отсчечения камеры
+const double CCanabolaApplication::ZFAR = 10;
+
 CCanabolaApplication::CCanabolaApplication(const char* title, int width, int height, GLuint program)
 	: CGLApplication(title, width, height)
 	, m_program(program)
@@ -27,9 +36,9 @@ void CCanabolaApplication::InitShaders()
 	CShaderLoader loader;
 	// И загружаем с его помощью вершинный и фрагментный шейдеры
 	CShader vertexShader =
-		loader.LoadShader(GL_VERTEX_SHADER, "checker.vsh");
+		loader.LoadShader(GL_VERTEX_SHADER, "shaders/vertex_shader.vert");
 	CShader fragmentShader =
-		loader.LoadShader(GL_FRAGMENT_SHADER, "checker.frag");
+		loader.LoadShader(GL_FRAGMENT_SHADER, "shaders/fragment_shader.frag");
 
 	// Создаем компилятор
 	CShaderCompiler compiler;
@@ -58,16 +67,13 @@ void CCanabolaApplication::InitShaders()
 	// будет выброшено исключение
 	linker.CheckStatus();
 	// Все нормально
-
 }
 
 void CCanabolaApplication::OnInit()
 {
 	glEnable(GL_DEPTH_TEST);
-	glClearColor(0.5, 0.5, 0.5, 1);
+	glClearColor(0.0, 0.0, 0.0, 1);
 	glColor3f(1, 1, 1);
-
-	glewInit();
 
 	// Задаем параметры камеры
 	glLoadIdentity();
@@ -88,9 +94,9 @@ void CCanabolaApplication::OnReshape(int width, int height)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-aspect, +aspect, -1, 1, 0, 10);
-	glMatrixMode(GL_MODELVIEW);
+	gluPerspective(FIELD_OF_VIEW, aspect, ZNEAR, ZFAR);
 
+	glMatrixMode(GL_MODELVIEW);
 }
 
 void CCanabolaApplication::OnDisplay()
@@ -99,20 +105,15 @@ void CCanabolaApplication::OnDisplay()
 
 	glUseProgram(m_program);
 
-	// Рисуем квадрат
-	glBegin(GL_QUADS);
+	#define M_PI 3.1415926535897932384626433832795
+
+	glColor3f(0.0, 1.0, 0.0);
+	glBegin(GL_LINE_STRIP);
 	{
-		glTexCoord2f(0, 0);
-		glVertex2f(-0.8, -0.8);
-
-		glTexCoord2f(4, 0);
-		glVertex2f(0.8, -0.8);
-
-		glTexCoord2f(4, 4);
-		glVertex2f(0.8, 0.8);
-
-		glTexCoord2f(0, 4);
-		glVertex2f(-0.8, 0.8);
+		for (double x = 0; x <= 2 * M_PI; x += M_PI / 1000)
+		{
+			glVertex2d(x, 0);
+		}
 	}
 	glEnd();
 

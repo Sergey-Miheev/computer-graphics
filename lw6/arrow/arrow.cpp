@@ -1,13 +1,13 @@
 ﻿#include <iostream>
-#include "CFlagApplication.h"
+#include "CArrowApplication.h"
 
-const char * TITLE = "USSR Flag";
+const char* TITLE = "Arrow";
 
 const int width = 1300;
 
 const int height = 750;
 
-CFlagApplication flagApp(TITLE, width, height);
+CArrowApplication arrow(TITLE, width, height);
 
 int main()
 {
@@ -17,8 +17,7 @@ int main()
 		return -1;
 	}
 
-	flagApp.MainLoop();
+	arrow.MainLoop();
 
 	return 0;
 }
-

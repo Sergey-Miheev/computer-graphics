@@ -6,7 +6,9 @@ bool LocatedInCanvas(vec2 point, vec2 rectVertexes[4])
 	for (int i = 0; i < size; i++) {
 		if ((rectVertexes[i].y < point.y && rectVertexes[j].y >= point.y || rectVertexes[j].y < point.y && rectVertexes[i].y >= point.y) && 
 		(rectVertexes[i].x + (point.y - rectVertexes[i].y) / (rectVertexes[j].y - rectVertexes[i].y) * (rectVertexes[j].x - rectVertexes[i].x) < point.x))
+		{
 			isLocated = !isLocated;
+		}
 		j = i;
 	}
 	return isLocated;
@@ -35,7 +37,9 @@ bool LocatedInStar(vec2 centerCoord, float smallCircleRadius, float bigCircleRad
 	for (int i = 0; i < size; i++) {
 		if ((starVertexes[i].y < point.y && starVertexes[j].y >= point.y || starVertexes[j].y < point.y && starVertexes[i].y >= point.y) && 
 		(starVertexes[i].x + (point.y - starVertexes[i].y) / (starVertexes[j].y - starVertexes[i].y) * (starVertexes[j].x - starVertexes[i].x) < point.x))
+		{
 			isLocated = !isLocated;
+		}
 		j = i;
 	}
 	return isLocated;
@@ -62,7 +66,9 @@ bool LocatedInHammer(vec2 startCoord, vec2 point)
 	for (int i = 0; i < size; i++) {
 		if ((hammerVertexes[i].y < point.y && hammerVertexes[j].y >= point.y || hammerVertexes[j].y < point.y && hammerVertexes[i].y >= point.y) && 
 		(hammerVertexes[i].x + (point.y - hammerVertexes[i].y) / (hammerVertexes[j].y - hammerVertexes[i].y) * (hammerVertexes[j].x - hammerVertexes[i].x) < point.x))
+		{
 			isLocated = !isLocated;
+		}
 		j = i;
 	}
 	return isLocated;
@@ -97,8 +103,11 @@ bool LocatedOutsideHandle(vec2 centerCoords, vec2 point, float a, float b)
 
 	for (int i = 0; i < size; i++) {
 		if ((rectVertexes[i].y < point.y && rectVertexes[j].y >= point.y || rectVertexes[j].y < point.y && rectVertexes[i].y >= point.y) && 
-		(rectVertexes[i].x + (point.y - rectVertexes[i].y) / (rectVertexes[j].y - rectVertexes[i].y) * (rectVertexes[j].x - rectVertexes[i].x) < point.x))
+		(rectVertexes[i].x + (point.y - rectVertexes[i].y) / (rectVertexes[j].y - rectVertexes[i].y) * 
+		(rectVertexes[j].x - rectVertexes[i].x) < point.x))
+		{
 			isLocated = !isLocated;
+		}
 		j = i;
 	}
 	return isLocated;
@@ -121,7 +130,9 @@ bool LocatedInSickleHandle(vec2 centerCoords, vec2 point, float a, float b)
 	for (int i = 0; i < size; i++) {
 		if ((rectVertexes[i].y < point.y && rectVertexes[j].y >= point.y || rectVertexes[j].y < point.y && rectVertexes[i].y >= point.y) && 
 		(rectVertexes[i].x + (point.y - rectVertexes[i].y) / (rectVertexes[j].y - rectVertexes[i].y) * (rectVertexes[j].x - rectVertexes[i].x) < point.x))
+		{
 			isLocated = !isLocated;
+		}
 		j = i;
 	}
 
@@ -195,7 +206,7 @@ void main()
 	// info about star
 	float smallCircleRadius = 0.05;
 	float bigCircleRadius = 0.14;
-	vec2 starCenterCoord = vec2(0.7, 2.64);
+	vec2 starCenterCoord = vec2(1.7, 2.64);
 
 	// info about hammer
 	vec2 hammerStartCoord = vec2(0.62, 2.3);

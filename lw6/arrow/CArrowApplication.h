@@ -2,13 +2,14 @@
 #include <iostream>
 #include "CGLApplication.h"
 #include "CProgram.cpp"
+#include "CShader.cpp"
 
-class CCanabolaApplication :
+class CArrowApplication :
     public CGLApplication
 {
 public:
-	CCanabolaApplication(const char* title, int width, int height, GLuint program = 0);
-    ~CCanabolaApplication();
+	CArrowApplication(const char* title, int width, int height, GLuint program = 0);
+    ~CArrowApplication();
 protected:
 	virtual void OnInit();
 	virtual void OnDisplay();
@@ -22,5 +23,8 @@ private:
 	static const double ZFAR;
 
 	CProgram m_program;
-
+	CShader m_vertexShader;
+	CShader m_fragmentShader;
+	CShader m_geometryShader;
 };
+

@@ -1,0 +1,34 @@
+#pragma once
+#include <iostream>
+#include <GL/glut.h>
+
+class CShaderLoader
+{
+public:
+	CShaderLoader(void);
+	~CShaderLoader(void);
+
+	// Выполняем загрузку исходного кода шейдера из файла
+	GLuint LoadShader(
+		GLenum shaderType,
+		const wchar_t* fileName,
+		GLuint shaderId = 0);
+	GLuint LoadShader(
+		GLenum shaderType,
+		const char* fileName,
+		GLuint shaderId = 0);
+
+	// Выполняем загрузку исходного кода шейдера из входного потока
+	GLuint LoadShader(
+		GLenum shaderType,
+		std::istream& stream,
+		GLuint shaderId = 0);
+	// Выполняем загрузку исходного кода шейдера из строки
+	GLuint LoadShaderFromString(
+		GLenum shaderType,
+		std::string const& source,
+		GLuint shaderId = 0
+	);
+};
+
+

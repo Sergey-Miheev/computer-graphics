@@ -3,13 +3,20 @@
 
 const char* TITLE = "Canabola";
 
-const int width = 1200;
+const int width = 1300;
 
-const int height = 900;
+const int height = 750;
 
 CCanabolaApplication canbolaApp(TITLE, width, height);
 
 int main()
 {
+	glewInit();
+	if (!GLEW_ARB_shader_objects)
+	{
+		return -1;
+	}
     canbolaApp.MainLoop();
+
+	return 0;
 }

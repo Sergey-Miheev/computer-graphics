@@ -27,9 +27,9 @@ void CFlagApplication::InitShaders()
 	CShaderLoader loader;
 	// И загружаем с его помощью вершинный и фрагментный шейдеры
 	CShader vertexShader =
-		loader.LoadShader(GL_VERTEX_SHADER, "checker.vsh");
+		loader.LoadShader(GL_VERTEX_SHADER, "shaders/vertex_shader.vert");
 	CShader fragmentShader =
-		loader.LoadShader(GL_FRAGMENT_SHADER, "checker.frag");
+		loader.LoadShader(GL_FRAGMENT_SHADER, "shaders/fragment_shader.frag");
 
 	// Создаем компилятор
 	CShaderCompiler compiler;
@@ -66,8 +66,6 @@ void CFlagApplication::OnInit()
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.5, 0.5, 0.5, 1);
 	glColor3f(1, 1, 1);
-
-	glewInit();
 
 	// Задаем параметры камеры
 	glLoadIdentity();
