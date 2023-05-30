@@ -62,13 +62,13 @@ void CArrowApplication::InitShaders()
 	compiler.CheckStatus();
 
 	// Задаем параметры шейдерной программы
-	// тип входных примитивов: точки
-	m_program.SetParameter(GL_GEOMETRY_INPUT_TYPE_ARB, GL_POINTS);
-	// типв выходных примитивов: лента из треугольникков
-	m_program.SetParameter(GL_GEOMETRY_OUTPUT_TYPE_ARB, GL_TRIANGLE_STRIP);
+	// тип входных примитивов: линии
+	m_program.SetParameter(GL_GEOMETRY_INPUT_TYPE_ARB, GL_LINES);
+	// типв выходных примитивов: лента из линий
+	m_program.SetParameter(GL_GEOMETRY_OUTPUT_TYPE_ARB, GL_LINE_STRIP);
 	// Максимальное количество вершин, порождаемых геометрическим шейдером
-	// за один вызов. Для ленты из двух треугольников оно равно 4
-	m_program.SetParameter(GL_GEOMETRY_VERTICES_OUT_EXT, 4);
+	// за один вызов. Для ленты оно равно 5
+	m_program.SetParameter(GL_GEOMETRY_VERTICES_OUT_EXT, 5);
 
 	// Компонуем программу и проверяем ее статус
 	CProgramLinker linker;
@@ -120,7 +120,14 @@ void CArrowApplication::OnDisplay()
 		glVertex3f(-1.5, 0, 0);
 		glVertex3f(1.5, 0.0, 0);
 	glEnd();
+	
+	/*
+	glBegin(GL_POINTS);
 
+	glVertex2f(0.0, 0.0);
+
+	glEnd();
+	*/
 	// Переключаемся на стандартный конвейер
 	glUseProgram(0);
 }

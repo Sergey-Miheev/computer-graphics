@@ -27,4 +27,3 @@ private:
 	CShader m_fragmentShader;
 	CShader m_geometryShader;
 };
-
