@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "CGLApplication.h"
-#include "CProgram.cpp"
+#include "CProgram.h"
 #include "CShader.h"
 
 class CArrowApplication :
