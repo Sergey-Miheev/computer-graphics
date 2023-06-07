@@ -3,7 +3,7 @@
 #include "CArrowApplication.h"
 #include "CShaderLoader.h"
 #include "CShaderCompiler.h"
-#include "CShader.cpp"
+#include "CShader.h"
 #include "CProgramLinker.h"
 
 // Угол обзора по вертикали
@@ -46,7 +46,7 @@ void CArrowApplication::InitShaders()
 	m_fragmentShader =
 		loader.LoadShader(GL_FRAGMENT_SHADER, "shaders/fragment_shader.frag");
 	m_geometryShader =
-		loader.LoadShader(GL_GEOMETRY_SHADER, "shaders/geometry_shader.gsh");
+		loader.LoadShader(GL_GEOMETRY_SHADER, "shaders/geometry_shader.geom");
 
 	// Создаем программный объект и присоединяем шейдеры к нему
 	m_program.Create();
@@ -61,15 +61,6 @@ void CArrowApplication::InitShaders()
 	compiler.CompileShader(m_fragmentShader);
 	compiler.CheckStatus();
 
-	// Задаем параметры шейдерной программы
-	// тип входных примитивов: линии
-	m_program.SetParameter(GL_GEOMETRY_INPUT_TYPE_ARB, GL_LINES);
-	// типв выходных примитивов: лента из линий
-	m_program.SetParameter(GL_GEOMETRY_OUTPUT_TYPE_ARB, GL_LINE_STRIP);
-	// Максимальное количество вершин, порождаемых геометрическим шейдером
-	// за один вызов. Для ленты оно равно 5
-	m_program.SetParameter(GL_GEOMETRY_VERTICES_OUT_EXT, 5);
-
 	// Компонуем программу и проверяем ее статус
 	CProgramLinker linker;
 	linker.LinkProgram(m_program);
@@ -81,8 +72,6 @@ void CArrowApplication::OnInit()
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.0, 0.0, 0.0, 1);
 	glColor3f(1, 1, 1);
-
-	//glewInit();
 
 	// Задаем параметры камеры
 	glLoadIdentity();
@@ -98,36 +87,27 @@ void CArrowApplication::OnReshape(int width, int height)
 {
 	glViewport(0, 0, width, height);
 
-	// Вычисляем соотношение сторон клиентской области окна
 	double aspect = double(width) / double(height);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(FIELD_OF_VIEW, aspect, ZNEAR, ZFAR);
-
+	glOrtho(-aspect, +aspect, -1, 1, 1, 50);
 	glMatrixMode(GL_MODELVIEW);
 }
 
 void CArrowApplication::OnDisplay()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Активируем шейдерную программу и задаем значения ее uniform-переменных
 	glUseProgram(m_program);
 
 	// Рисуем две точки в виде текстурированных прямоугольников
 	glBegin(GL_LINES);
-		glVertex3f(-1.5, 0, 0);
-		glVertex3f(1.5, 0.0, 0);
+		glVertex3f(0, 0, 0);
+		glVertex3f(0.0, -0.9, 0);
 	glEnd();
-	
-	/*
-	glBegin(GL_POINTS);
 
-	glVertex2f(0.0, 0.0);
-
-	glEnd();
-	*/
 	// Переключаемся на стандартный конвейер
 	glUseProgram(0);
 }

@@ -1,4 +1,4 @@
-#include "CShader.cpp"
+#include "CShader.h"
 #include "CShaderCompiler.h"
 #include <sstream>
 

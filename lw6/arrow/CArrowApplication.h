@@ -2,7 +2,7 @@
 #include <iostream>
 #include "CGLApplication.h"
 #include "CProgram.cpp"
-#include "CShader.cpp"
+#include "CShader.h"
 
 class CArrowApplication :
     public CGLApplication

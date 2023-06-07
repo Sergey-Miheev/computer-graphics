@@ -1,4 +1,4 @@
-#include "CProgram.cpp"
+#include "CProgram.h"
 #include "CProgramLinker.h"
 #include <vector>
 #include <sstream>
@@ -46,3 +46,4 @@ void CProgramLinker::CheckStatus()
 		throw std::runtime_error(strm.str());
 	}
 }
+

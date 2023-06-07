@@ -6,8 +6,9 @@
 #include "GL/glut.h"
 #include <assert.h>
 
-//Базовый класс для работы с шейдерный объектом OpenGL
-
+/*
+Базовый класс для работы с шейдерный объектом OpenGL
+*/
 class CShaderBase
 {
 	// Защищенные конструктор и деструктор сделают 
@@ -33,7 +34,7 @@ protected:
 	}
 public:
 	// Задаем исходный код шейдера
-	void SetSource(GLsizei count, const char** strings, const GLint* lengths)
+	void SetSource(GLsizei count, const GLchar** strings, const GLint* lengths)
 	{
 		assert(m_shader != 0);
 
@@ -41,16 +42,16 @@ public:
 	}
 
 	// Задаем исходный код шейдера (в одной строке)
-	void SetSource(const char* source, GLint length)
+	void SetSource(const GLchar* source, GLint length)
 	{
-		const char** ppSource = &source;
+		const GLchar** ppSource = &source;
 		SetSource(1, ppSource, &length);
 	}
 
 	// Задаем исходный код шейдера (одна ASCIIZ-строка)
-	void SetSource(const char* source)
+	void SetSource(const GLchar* source)
 	{
-		const char** ppSource = &source;
+		const GLchar** ppSource = &source;
 		SetSource(1, ppSource, NULL);
 	}
 
@@ -70,7 +71,7 @@ public:
 	}
 
 	// Получаем информационный лог от шейдера
-	void GetInfoLog(GLsizei bufSize, GLsizei* length, char* infoLog)const
+	void GetInfoLog(GLsizei bufSize, GLsizei* length, GLchar* infoLog)const
 	{
 		assert(m_shader != 0);
 		glGetShaderInfoLog(m_shader, bufSize, length, infoLog);
