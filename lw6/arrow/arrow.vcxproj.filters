@@ -45,6 +45,9 @@
     <ClCompile Include="CProgramImpl.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="CShader.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CArrowApplication.h">
@@ -65,11 +68,13 @@
     <ClInclude Include="CProgramImpl.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="CShaderImpl.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\fragment_shader.frag" />
     <None Include="shaders\vertex_shader.vert" />
-    <None Include="lines.geom" />
     <None Include="shaders\geometry_shader.geom" />
   </ItemGroup>
 </Project>

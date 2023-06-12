@@ -4,20 +4,6 @@
 using namespace boost::interprocess::ipcdetail;
 using boost::mutex;
 
-CRenderer::CRenderer(void)
-	:m_rendering(0)	// »значальное состо€ние: "не рисуем"
-	, m_stopping(0)	// Ќе останавливаемс€
-	, m_totalChunks(0)	// ќбщее количество обрабатываемых блоков изображени€
-	, m_renderedChunks(0)	//  оличество обработанных блоков изображени€
-{
-}
-
-CRenderer::~CRenderer(void)
-{
-	// ќстанавливаем работу фонового потока, если он еще не закончилс€
-	Stop();
-}
-
 bool CRenderer::IsRendering()const
 {
 	return atomic_read32(
@@ -165,4 +151,18 @@ void CRenderer::Stop()
 		// работу до вызова SetStopping(true)
 		SetStopping(false);
 	}
+}
+
+CRenderer::CRenderer(void)
+	:m_rendering(0)	// »значальное состо€ние: "не рисуем"
+	, m_stopping(0)	// Ќе останавливаемс€
+	, m_totalChunks(0)	// ќбщее количество обрабатываемых блоков изображени€
+	, m_renderedChunks(0)	//  оличество обработанных блоков изображени€
+{
+}
+
+CRenderer::~CRenderer(void)
+{
+	// ќстанавливаем работу фонового потока, если он еще не закончилс€
+	Stop();
 }

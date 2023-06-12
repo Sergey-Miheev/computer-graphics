@@ -1,4 +1,4 @@
-#include "CProgram.h"
+#include "CProgramImpl.h"
 #include "CProgramLinker.h"
 #include <vector>
 #include <sstream>
@@ -16,7 +16,7 @@ void CProgramLinker::LinkProgram(GLuint program)
 	// Компонуем программу и добавляем ее в массив
 	// компонуемых программ
 	CProgramHandle prog(program);
-	prog.Link();
+	prog.LinkProgram();
 	m_programs.push_back(program);
 }
 
@@ -30,11 +30,11 @@ void CProgramLinker::CheckStatus()
 	for (size_t i = 0; i < m_programs.size(); ++i)
 	{
 		CProgramHandle program(m_programs[i]);
-		if (program.GetParameter(GL_LINK_STATUS) != GL_TRUE)
+		if (program.GetParameterOfProgram(GL_LINK_STATUS) != GL_TRUE)
 		{
 			hasErrors = true;
 			strm << "Program " << program << " linkage failed: " <<
-				program.GetInfoLog() << "\n";
+				program.GetInfoLogProgram() << "\n";
 		}
 	}
 

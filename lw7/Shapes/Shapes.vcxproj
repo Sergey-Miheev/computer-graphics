@@ -137,12 +137,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CApplication.cpp" />
     <ClCompile Include="CFrameBuffer.cpp" />
     <ClCompile Include="CRenderer.cpp" />
     <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CApplication.h" />
     <ClInclude Include="CFrameBuffer.h" />
     <ClInclude Include="CRenderer.h" />
     <ClInclude Include="stdafx.h" />

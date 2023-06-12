@@ -50,7 +50,12 @@ public:
 	}
 
 	// Установка цвета пикселя с заданными координатами
-	void SetPixel(unsigned x, unsigned y, boost::uint32_t color) throw();
+	void SetPixel(unsigned x, unsigned y, boost::uint32_t color) throw()
+	{
+		assert(x < m_width);
+		assert(y < m_height);
+		m_pixels[size_t(y * m_width + x)] = color;
+	}
 
 private:
 	std::vector<boost::uint32_t> m_pixels;

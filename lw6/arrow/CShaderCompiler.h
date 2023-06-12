@@ -14,5 +14,3 @@ private:
 	CShaderCompiler& operator=(CShaderCompiler const&);
 	std::vector<GLuint> m_shaders;
 };
-
-

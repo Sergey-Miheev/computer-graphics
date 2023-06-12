@@ -137,6 +137,7 @@
     <ClCompile Include="CProgram.h" />
     <ClCompile Include="CProgramImpl.cpp" />
     <ClCompile Include="CProgramLinker.cpp" />
+    <ClCompile Include="CShader.cpp" />
     <ClCompile Include="CShader.h" />
     <ClCompile Include="CShaderCompiler.cpp" />
     <ClCompile Include="CShaderLoader.cpp" />
@@ -147,10 +148,10 @@
     <ClInclude Include="CProgramImpl.h" />
     <ClInclude Include="CProgramLinker.h" />
     <ClInclude Include="CShaderCompiler.h" />
+    <ClInclude Include="CShaderImpl.h" />
     <ClInclude Include="CShaderLoader.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="lines.geom" />
     <None Include="shaders\fragment_shader.frag" />
     <None Include="shaders\geometry_shader.geom" />
     <None Include="shaders\vertex_shader.vert" />

@@ -2,8 +2,6 @@
 #include "CFrameBuffer.h"
 #include "boost/thread/thread.hpp"
 
-using namespace boost;
-
 class CRenderer
 {
 public:
@@ -28,6 +26,7 @@ private:
 
 	boost::uint32_t CalculatePixelColor(int x, int y,
 		unsigned frameWidth, unsigned frameHeight)const;
+
 private:
 	boost::thread m_thread;
 	mutable boost::mutex m_mutex;
@@ -36,4 +35,3 @@ private:
 	volatile boost::uint32_t m_totalChunks;
 	volatile boost::uint32_t m_renderedChunks;
 };
-

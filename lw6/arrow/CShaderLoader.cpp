@@ -1,4 +1,4 @@
-#include "CShader.h"
+#include "CShaderImpl.h"
 #include "CShaderLoader.h"
 #include <fstream>
 #include <sstream>
@@ -23,7 +23,7 @@ GLuint CShaderLoader::LoadShaderFromString(
 	// (если в нам был передан нулевой идентификатор шейдера)
 	if (!shader)
 	{
-		shader.Create(shaderType);
+		shader.CreateShader(shaderType);
 	}
 	shader.SetSource(source.c_str());
 

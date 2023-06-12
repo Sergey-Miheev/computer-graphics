@@ -6,15 +6,6 @@
 #include "CShader.h"
 #include "CProgramLinker.h"
 
-// Угол обзора по вертикали
-const double CArrowApplication::FIELD_OF_VIEW = 80;
-
-// Расстояине до ближней плоскости отсчечения камеры
-const double CArrowApplication::ZNEAR = 1;
-
-// Расстояине до дальней плоскости отсчечения камеры
-const double CArrowApplication::ZFAR = 10;
-
 CArrowApplication::CArrowApplication(const char* title, int width, int height, GLuint program)
 	: CGLApplication(title, width, height)
 	, m_program(program)
@@ -49,7 +40,7 @@ void CArrowApplication::InitShaders()
 		loader.LoadShader(GL_GEOMETRY_SHADER, "shaders/geometry_shader.geom");
 
 	// Создаем программный объект и присоединяем шейдеры к нему
-	m_program.Create();
+	m_program.CreateProgram();
 	m_program.AttachShader(m_vertexShader);
 	m_program.AttachShader(m_fragmentShader);
 	m_program.AttachShader(m_geometryShader);
@@ -105,7 +96,7 @@ void CArrowApplication::OnDisplay()
 	// Рисуем две точки в виде текстурированных прямоугольников
 	glBegin(GL_LINES);
 		glVertex3f(0, 0, 0);
-		glVertex3f(0.0, -0.9, 0);
+		glVertex3f(0.0, -0.8, 0);
 	glEnd();
 
 	// Переключаемся на стандартный конвейер

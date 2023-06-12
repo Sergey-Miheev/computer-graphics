@@ -1,4 +1,4 @@
-#include "CShader.h"
+#include "CShaderImpl.h"
 #include "CShaderCompiler.h"
 #include <sstream>
 
@@ -6,6 +6,7 @@ CShaderCompiler::CShaderCompiler(void)
 {
 
 }
+
 CShaderCompiler::~CShaderCompiler(void)
 {
 

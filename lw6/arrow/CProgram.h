@@ -4,7 +4,7 @@
 #define GLEW_STATIC
 #include "glew.h"
 #include "GL/glut.h"
-
+// не забыть удалить программу через delete
 //Класс "Базовый программный объект OpenGL"
 class CProgramBase
 {
@@ -27,278 +27,88 @@ public:
 	}
 
 	// Получае целочисленный идентификатор программного объекта
-	GLuint Get()const
-	{
-		return m_program;
-	}
+	GLuint Get()const;
 
 	// Задаем параметр программного объекта
-	void SetParameter(GLenum pname, GLint value)
-	{
-		assert(m_program);
-		glProgramParameteri(m_program, pname, value);
-	}
+	void SetParameter(GLenum pname, GLint value);
 
 	// Удаляем программный объект
-	void Delete()
-	{
-		if (m_program != 0)
-		{
-			glDeleteProgram(m_program);
-			m_program = 0;
-		}
-	}
+	void DeleteProgram();
 
 	// Присоединям к объекту класса дескриптор программного объекта,
 	// возвращая ранее существующий
-	GLuint Attach(GLuint program)
-	{
-		GLuint tmp = m_program;
-		m_program = program;
-		return tmp;
-	}
-
-	/*
-	Присоединяем к программе шейдер с указанным идентификатором
-	*/
-	void AttachShader(GLuint shader)
-	{
-		assert(m_program != 0);
-		glAttachShader(m_program, shader);
-	}
+	GLuint AttachProgram(GLuint program);
+	
+	//Присоединяем к программе шейдер с указанным идентификатором
+	void AttachShader(GLuint shader);
 
 	// Отсоединяем шейдер с указанным идентификатором
-	void DetachShader(GLuint shader)
-	{
-		assert(m_program != 0);
-		glDetachShader(m_program, shader);
-	}
+	void DetachShader(GLuint shader);
 
 	// Выполняем компоновку программы
-	void Link()const
-	{
-		assert(m_program);
-		glLinkProgram(m_program);
-	}
+	void LinkProgram()const;
 
 	// Проверяем, возможна ли корректная работа шейдерной программы
 	// с текущим состоянием OpenGL
-	void Validate()const
-	{
-		assert(m_program);
-		glValidateProgram(m_program);
-	}
+	void Validate()const;
 
 	// Получаем информацию о программе в текстовом виде
-	void GetInfoLog(GLsizei bufSize, GLsizei* length, GLchar* infoLog)const
-	{
-		assert(m_program != 0);
-		glGetProgramInfoLog(m_program, bufSize, length, infoLog);
-	}
+	void GetInfoLogProgram(GLsizei bufSize, GLsizei* length, GLchar* infoLog)const;
 
 	// Получаем информацию о программе в текстовом виде
 	// (упрощенный вариант)
-	std::string GetInfoLog()const
-	{
-		GLint length = GetParameter(GL_INFO_LOG_LENGTH);
-		if (length > 0)
-		{
-			std::vector<char> buffer(length);
-			GetInfoLog(length, &length, &buffer[0]);
-			std::string log(&buffer[0], length - 1);
-			return log;
-		}
-		else
-		{
-			return std::string();
-		}
-	}
+	std::string GetInfoLogProgram()const;
 
 	// Задаем параметр программного объекта
-	void GetParameter(GLenum pname, GLint* param)const
-	{
-		assert(m_program != 0);
-		glGetProgramiv(m_program, pname, param);
-	}
+	void GetParameterOfProgram(GLenum pname, GLint* param)const;
 
 	// Получаем расположение uniform-переменной с 
 	// указанным именем
-	GLint GetUniformLocation(const GLchar* name)const
-	{
-		assert(m_program);
-		return glGetUniformLocation(m_program, name);
-	}
+	GLint GetUniformLocation(const GLchar* name)const;
 
 	// Получаем расположение атрибутивной переменной 
 	// с заданным именем.
-	GLint GetAttribLocation(const GLchar* name)const
-	{
-		assert(m_program);
-		return glGetAttribLocation(m_program, name);
-	}
+	GLint GetAttribLocation(const GLchar* name)const;
 
 	// Возвращаем количество активных uniform-переменных
-	GLuint GetActiveUniforms()const
-	{
-		return GetParameter(GL_ACTIVE_UNIFORMS);
-	}
+	GLuint GetActiveUniforms()const;
 
 	// Возвращаем количество активных attribute-переменных
-	GLuint GetActiveAttributes()const
-	{
-		return GetParameter(GL_ACTIVE_ATTRIBUTES);
-	}
+	GLuint GetActiveAttributes()const;
 
 	// Возвращаем максимальную длину для хранения имени 
 	// uniform-переменной программы
-	GLuint GetActiveUniformMaxLength()const
-	{
-		return GetParameter(GL_ACTIVE_UNIFORM_MAX_LENGTH);
-	}
+	GLuint GetActiveUniformMaxLength()const;
 
 	// Получаем информацию об имени, типе и размере uniform-переменной
 	void GetActiveUniform(
 		GLuint index, GLsizei maxLength,
 		GLsizei* length, GLint* size,
-		GLenum* type, GLchar* name)const
-	{
-		assert(m_program);
-		assert(index < GetActiveUniforms());
-		glGetActiveUniform(
-			m_program, index, maxLength, length, size, type, name);
-	}
+		GLenum* type, GLchar* name)const;
 
 	// Получаем информацию об имени, типе и размере uniform-переменной
 	// более простым способом
-	std::string GetActiveUniform(GLuint index, GLint* size, GLenum* type)const
-	{
-		// Узнаем размер буфера для хранения имени
-		GLuint bufferLength = GetActiveUniformMaxLength();
-		if (!bufferLength)
-		{
-			// Нет активных uniform переменных
-			return std::string();
-		}
-		std::vector<char> buffer(bufferLength);
-		GLsizei nameLength = 0;
-
-		// Получаем имя, тип и размер переменной
-		GetActiveUniform(
-			index, bufferLength, &nameLength, size, type, &buffer[0]);
-
-		// Переводим их в строковое представление
-		return std::string(&buffer[0], &buffer[nameLength]);
-	}
+	std::string GetActiveUniform(GLuint index, GLint* size, GLenum* type)const;
 
 	// Возвращаем максимальную длину для хранения имени 
 	// attribute-переменной программы
-	GLuint GetActiveAttributeMaxLength()const
-	{
-		return GetParameter(GL_ACTIVE_ATTRIBUTE_MAX_LENGTH);
-	}
+	GLuint GetActiveAttributeMaxLength()const;
 
 	// Получаем информацию об имени, типе, длине и размере активной
 	// attribute-переменной
 	void GetActiveAttrib(
 		GLuint index, GLsizei maxLength,
 		GLsizei* length, GLint* size,
-		GLenum* type, GLchar* name)const
-	{
-		assert(m_program);
-		assert(index < GetActiveAttributes());
-		glGetActiveAttrib(m_program, index, maxLength, length, size, type, name);
-	}
+		GLenum* type, GLchar* name)const;
 
 	// Получаем информацию об имени, размере и типе активной
 	// attribute-переменной более простым способом
-	std::string GetActiveAttrib(GLuint index, GLint* size, GLenum* type)const
-	{
-		GLuint bufferLength = GetActiveAttributeMaxLength();
-		if (!bufferLength)
-		{
-			// Нет активных attribute-переменных
-			return std::string();
-		}
-		std::vector<char> buffer(bufferLength);
-		GLsizei nameLength = 0;
-
-		// Получаем имя, тип и размер переменной
-		GetActiveAttrib(
-			index, bufferLength,
-			&nameLength, size,
-			type, &buffer[0]);
-
-		// Переводим их в строковое представление
-		return std::string(&buffer[0], &buffer[nameLength]);
-	}
+	std::string GetActiveAttrib(GLuint index, GLint* size, GLenum* type)const;
 
 	// Получаем параметр программного объекта
-	GLint GetParameter(GLenum pname)const
-	{
-		GLint value = 0;
-		GetParameter(pname, &value);
-		return value;
-	}
+	GLint GetParameterOfProgram(GLenum pname)const;
 private:
 	CProgramBase(CProgramBase const&);
 	CProgramBase& operator=(CProgramBase const&);
 	GLuint m_program;
 };
-
-/*
-Управляемая либо неуправляемая реализация программного объекта
-*/
-template<bool t_managed>
-class CProgramImpl : public CProgramBase
-{
-public:
-	CProgramImpl(GLuint program = 0)
-		:CProgramBase(program)
-	{
-
-	}
-
-	// Создаем программный объект и возвращаем его идентификатор
-	GLuint Create()
-	{
-		if (t_managed && (Get() != 0))
-		{
-			Delete();
-		}
-		GLuint program = glCreateProgram();
-		Attach(program);
-		return program;
-	}
-
-	// Выполняем замену текущего программного объекта
-	CProgramImpl& operator=(GLuint program)
-	{
-		// Удаляем ранее присоединенную программу
-		if (t_managed && (Get() != 0) && (Get() != program))
-		{
-			Delete();
-		}
-		Attach(program);
-		return *this;
-	}
-
-	// Деструктор программного объекта
-	~CProgramImpl()
-	{
-		// удаляем объект OpenGL (если он управляется классом)
-		if (t_managed && Get() != 0)
-		{
-			Delete();
-		}
-	}
-};
-
-// Тип "Программа"
-// (с автоматическим управлением времем жизни
-// программного объекта OpenGL)
-typedef CProgramImpl<true> CProgram;
-
-// Тип "Дескриптор программы"
-// (без автоматического управления временем жизни
-// программного объекта OpenGL)
-typedef CProgramImpl<false> CProgramHandle;
